@@ -3,8 +3,8 @@ import json
 from datetime import datetime
 import re
 
-INPUT = "../data/raw/wbb.csv"
-OUTPUT = "../data/normalized/wbb.json"
+INPUT = "../data/raw/wsb.csv"
+OUTPUT = "../data/normalized/wsb.json"
 
 events = []
 
@@ -50,8 +50,8 @@ with open(INPUT, newline="", encoding="utf-8") as f:
         opponent = clean_opponent(row["Opponent"])
 
         event = {
-            "id": f"wbb-{date_str}-{opponent.lower().replace(' ', '-')}",
-            "sport": "wbb",
+            "id": f"wsb-{date_str}-{opponent.lower().replace(' ', '-')}",
+            "sport": "wsb",
             "opponent": opponent,
             "homeAway": home_away,
             "date": date_str,

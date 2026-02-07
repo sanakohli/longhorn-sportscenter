@@ -1,213 +1,96 @@
 "use client";
 
-import { useState } from "react";
-import { events } from "./events";
-import { formatCentralTime } from "./time";
-import { generateEventICS } from "./calendar";
-import { Calendar } from "lucide-react";
+import { signIn } from "next-auth/react";
+import { Calendar, Clock, FileText, Zap } from "lucide-react";
 
-type Location = "home" | "away" | "neutral";
-type Sport = "mbb" | "wbb";
-
-function isThisWeek(dateStr: string) {
-  const eventDate = new Date(dateStr);
-  const now = new Date();
-
-  const startOfWeek = new Date(now);
-  startOfWeek.setDate(now.getDate() - now.getDay());
-
-  const endOfWeek = new Date(startOfWeek);
-  endOfWeek.setDate(startOfWeek.getDate() + 7);
-
-  return eventDate >= startOfWeek && eventDate < endOfWeek;
-}
-
-function filterClass(active: boolean) {
-  return active
-    ? "ml-2 underline font-semibold text-[#AC4E00]"
-    : "ml-2 text-gray-500 hover:text-[#AC4E00] transition-colors";
-}
-
-function downloadEvent(event: any) {
-  const ics = generateEventICS(event);
-  if (!ics) return;
-
-  const blob = new Blob([ics], { type: "text/calendar;charset=utf-8;" });
-  const url = URL.createObjectURL(blob);
-
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = `${event.id}.ics`;
-  document.body.appendChild(link);
-  link.click();
-
-  document.body.removeChild(link);
-  URL.revokeObjectURL(url);
-}
-
-
-export default function Home() {
-  // 🔹 Multi-select sports
-  const [sportFilter, setSportFilter] = useState<Set<Sport>>(
-    new Set(["mbb", "wbb"])
-  );
-
-  // 🔹 Multi-select locations
-  const [locationFilter, setLocationFilter] = useState<Set<Location>>(
-    new Set(["home", "away", "neutral"])
-  );
-
-  const [weekFilter, setWeekFilter] = useState<"thisWeek" | "all">("thisWeek");
-
-  function toggleSport(sport: Sport) {
-    setSportFilter(prev => {
-      const next = new Set(prev);
-      if (next.has(sport)) {
-        next.delete(sport);
-      } else {
-        next.add(sport);
-      }
-      return next;
-    });
-  }
-
-  function toggleLocation(loc: Location) {
-    setLocationFilter(prev => {
-      const next = new Set(prev);
-      if (next.has(loc)) {
-        next.delete(loc);
-      } else {
-        next.add(loc);
-      }
-      return next;
-    });
-  }
-
-  const filteredEvents = events.filter(event => {
-    if (!sportFilter.has(event.sport)) return false;
-    if (!locationFilter.has(event.homeAway)) return false;
-    if (weekFilter === "thisWeek" && !isThisWeek(event.date)) return false;
-    return true;
-  });
-
+export default function LandingPage() {
   return (
-    <main className="p-8 font-mono">
-      <h1 className="text-2xl mb-4">Longhorn SportsCenter</h1>
-
-      {/* Filters */}
-      <div className="mb-6 space-x-8 text-sm">
-        {/* Sport Filter (Multi-select) */}
-        <span>
-          Sport:
+    <main className="min-h-screen bg-white">
+      {/* Hero */}
+      <div className="bg-[#BF5700] text-white">
+        <div className="max-w-4xl mx-auto px-6 py-20 text-center">
+          <h1 className="text-5xl font-bold mb-4">Longhorn SportsCenter</h1>
+          <p className="text-xl mb-8 text-orange-100">
+            Never miss a Longhorns game. Smart scheduling that fits your life.
+          </p>
           <button
-            onClick={() => setSportFilter(new Set(["mbb", "wbb"]))}
-            className={filterClass(sportFilter.size === 2)}
+            onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
+            className="bg-white text-[#BF5700] px-8 py-3 rounded-lg font-semibold text-lg hover:bg-orange-50 transition-colors inline-flex items-center gap-2"
           >
-            All
+            <svg className="w-5 h-5" viewBox="0 0 24 24">
+              <path
+                fill="#4285F4"
+                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"
+              />
+              <path
+                fill="#34A853"
+                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+              />
+              <path
+                fill="#FBBC05"
+                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+              />
+              <path
+                fill="#EA4335"
+                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+              />
+            </svg>
+            Sign in with Google
           </button>
-          <button
-            onClick={() => toggleSport("mbb")}
-            className={filterClass(sportFilter.has("mbb"))}
-          >
-            MBB
-          </button>
-          <button
-            onClick={() => toggleSport("wbb")}
-            className={filterClass(sportFilter.has("wbb"))}
-          >
-            WBB
-          </button>
-        </span>
-
-        {/* Location Filter (Multi-select) */}
-        <span>
-          Location:
-          <button
-            onClick={() =>
-              setLocationFilter(new Set(["home", "away", "neutral"]))
-            }
-            className={filterClass(locationFilter.size === 3)}
-          >
-            All
-          </button>
-          <button
-            onClick={() => toggleLocation("home")}
-            className={filterClass(locationFilter.has("home"))}
-          >
-            Home
-          </button>
-          <button
-            onClick={() => toggleLocation("away")}
-            className={filterClass(locationFilter.has("away"))}
-          >
-            Away
-          </button>
-          <button
-            onClick={() => toggleLocation("neutral")}
-            className={filterClass(locationFilter.has("neutral"))}
-          >
-            Neutral
-          </button>
-        </span>
-
-        {/* Time Filter */}
-        <span>
-          Time:
-          <button
-            onClick={() => setWeekFilter("thisWeek")}
-            className={filterClass(weekFilter === "thisWeek")}
-          >
-            This Week
-          </button>
-          <button
-            onClick={() => setWeekFilter("all")}
-            className={filterClass(weekFilter === "all")}
-          >
-            All
-          </button>
-        </span>
+        </div>
       </div>
 
-      {/* Events */}
-      {filteredEvents.map(event => (
-        <div key={event.id} className="mb-4">
-          <div className="font-semibold flex items-center gap-2">
-            <span>
-              {event.date} — Texas{" "}
-              {event.homeAway === "home"
-                ? "vs"
-                : event.homeAway === "away"
-                  ? "@"
-                  : "vs"}{" "}
-              {event.opponent}
-            </span>
-
-            {event.startTime && (
-              <Calendar
-                onClick={() => downloadEvent(event)}
-                aria-label="Add game to calendar"
-                role="button"
-                className="w-4 h-4 shrink-0 cursor-pointer text-[#AC4E00] hover:opacity-80"
-              />
-            )}
-          </div>
-
-          <div className="text-sm">
-            {event.sport.toUpperCase()} · {event.venue} ·{" "}
-            {formatCentralTime(event.startTime)} CT
-          </div>
-          <div className="text-sm text-gray-600">
-            TV: {event.tvNetwork ?? "N/A"} · Big Ticket:{" "}
-            {event.bigTicketRequired ? "Yes" : "No"}
-          </div>
+      {/* Features */}
+      <div className="max-w-4xl mx-auto px-6 py-16">
+        <h2 className="text-2xl font-bold text-center mb-12 text-gray-900">
+          How it works
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <FeatureCard
+            icon={<Zap className="w-8 h-8 text-[#BF5700]" />}
+            title="Smart Recommendations"
+            description="Get personalized game suggestions based on your favorite sports, schedule, and preferences."
+          />
+          <FeatureCard
+            icon={<Calendar className="w-8 h-8 text-[#BF5700]" />}
+            title="Google Calendar Sync"
+            description="Automatically check your availability and add games directly to your Google Calendar."
+          />
+          <FeatureCard
+            icon={<FileText className="w-8 h-8 text-[#BF5700]" />}
+            title="Class Schedule Import"
+            description="Upload your class schedule PDF and we'll make sure games don't conflict with your classes."
+          />
+          <FeatureCard
+            icon={<Clock className="w-8 h-8 text-[#BF5700]" />}
+            title="5 Sports Covered"
+            description="Men's & Women's Basketball, Baseball, Softball, and Women's Soccer — all in one place."
+          />
         </div>
-      ))}
+      </div>
 
-      {filteredEvents.length === 0 && (
-        <div className="text-sm text-gray-500 mt-6">
-          No games match your filters.
-        </div>
-      )}
+      {/* Footer */}
+      <footer className="text-center py-8 text-sm text-gray-500 border-t">
+        Hook &apos;em Horns
+      </footer>
     </main>
+  );
+}
+
+function FeatureCard({
+  icon,
+  title,
+  description,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}) {
+  return (
+    <div className="border rounded-lg p-6">
+      <div className="mb-3">{icon}</div>
+      <h3 className="font-semibold text-lg mb-2 text-gray-900">{title}</h3>
+      <p className="text-gray-600">{description}</p>
+    </div>
   );
 }
