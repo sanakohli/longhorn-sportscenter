@@ -29,15 +29,15 @@ export default function SportFilter({
   const allSelected = sports.every((s) => selected.has(s));
 
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-2.5">
       <button
         onClick={() =>
           onChange(allSelected ? new Set() : new Set(sports))
         }
-        className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
+        className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
           allSelected
-            ? "bg-[#BF5700] text-white"
-            : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+            ? "bg-gradient-to-r from-[#BF5700] to-[#A04800] text-white shadow-md shadow-[#BF5700]/20"
+            : "bg-white text-gray-500 hover:text-gray-700 hover:bg-gray-50 border border-gray-200"
         }`}
       >
         All
@@ -46,14 +46,17 @@ export default function SportFilter({
         <button
           key={sport}
           onClick={() => toggle(sport)}
-          className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
+          className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
             selected.has(sport)
-              ? "text-white"
-              : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+              ? "text-white shadow-md"
+              : "bg-white text-gray-500 hover:text-gray-700 hover:bg-gray-50 border border-gray-200"
           }`}
           style={
             selected.has(sport)
-              ? { backgroundColor: SPORTS[sport].color }
+              ? {
+                  background: `linear-gradient(135deg, ${SPORTS[sport].color}, ${SPORTS[sport].color}cc)`,
+                  boxShadow: `0 4px 12px ${SPORTS[sport].color}33`,
+                }
               : undefined
           }
         >

@@ -37,10 +37,10 @@ export default function CalendarSync({ onSync }: CalendarSyncProps) {
   }
 
   return (
-    <div className="border rounded-lg p-4">
+    <div className="glass-card rounded-2xl p-5">
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="font-semibold">Google Calendar Sync</h3>
+          <h3 className="font-semibold text-gray-900">Google Calendar Sync</h3>
           {lastSync && (
             <p className="text-sm text-gray-500">
               Last synced: {lastSync}
@@ -59,7 +59,7 @@ export default function CalendarSync({ onSync }: CalendarSyncProps) {
         <button
           onClick={handleSync}
           disabled={syncing}
-          className="flex items-center gap-2 bg-[#BF5700] text-white px-4 py-2 rounded-lg text-sm font-medium disabled:opacity-50 hover:bg-[#A04800] transition-colors"
+          className="flex items-center gap-2 bg-gradient-to-r from-[#BF5700] to-[#A04800] text-white px-5 py-2.5 rounded-xl text-sm font-semibold disabled:opacity-50 hover:shadow-lg hover:shadow-[#BF5700]/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
         >
           {syncing ? (
             <RefreshCw className="w-4 h-4 animate-spin" />

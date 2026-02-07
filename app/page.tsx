@@ -7,15 +7,28 @@ export default function LandingPage() {
   return (
     <main className="min-h-screen bg-white">
       {/* Hero */}
-      <div className="bg-[#BF5700] text-white">
-        <div className="max-w-4xl mx-auto px-6 py-20 text-center">
-          <h1 className="text-5xl font-bold mb-4">Longhorn SportsCenter</h1>
-          <p className="text-xl mb-8 text-orange-100">
+      <div className="bg-hero-gradient text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.15),transparent_50%)]" />
+
+        <div className="max-w-4xl mx-auto px-6 py-28 text-center relative z-10">
+          <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 text-sm font-medium mb-6">
+            <Zap className="w-4 h-4" />
+            Smart Sports Scheduling for Longhorns
+          </div>
+
+          <h1 className="text-5xl md:text-6xl font-bold mb-5 tracking-tight">
+            Longhorn SportsCenter
+          </h1>
+          <p className="text-xl mb-10 text-white/80 max-w-2xl mx-auto leading-relaxed">
             Never miss a Longhorns game. Smart scheduling that fits your life.
           </p>
           <button
             onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
-            className="bg-white text-[#BF5700] px-8 py-3 rounded-lg font-semibold text-lg hover:bg-orange-50 transition-colors inline-flex items-center gap-2"
+            className="bg-white text-[#BF5700] px-8 py-3.5 rounded-xl font-semibold text-lg
+                       hover:bg-white/90 hover:scale-[1.02] active:scale-[0.98]
+                       transition-all duration-200
+                       shadow-lg shadow-black/10
+                       inline-flex items-center gap-2.5"
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24">
               <path
@@ -41,28 +54,31 @@ export default function LandingPage() {
       </div>
 
       {/* Features */}
-      <div className="max-w-4xl mx-auto px-6 py-16">
-        <h2 className="text-2xl font-bold text-center mb-12 text-gray-900">
+      <div className="max-w-4xl mx-auto px-6 py-20">
+        <h2 className="text-3xl font-bold text-center mb-4 text-gray-900 tracking-tight">
           How it works
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <p className="text-center text-gray-500 mb-14 max-w-xl mx-auto">
+          Three steps to never miss another Longhorns game
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <FeatureCard
-            icon={<Zap className="w-8 h-8 text-[#BF5700]" />}
+            icon={<Zap className="w-6 h-6 text-[#BF5700]" />}
             title="Smart Recommendations"
             description="Get personalized game suggestions based on your favorite sports, schedule, and preferences."
           />
           <FeatureCard
-            icon={<Calendar className="w-8 h-8 text-[#BF5700]" />}
+            icon={<Calendar className="w-6 h-6 text-[#BF5700]" />}
             title="Google Calendar Sync"
             description="Automatically check your availability and add games directly to your Google Calendar."
           />
           <FeatureCard
-            icon={<FileText className="w-8 h-8 text-[#BF5700]" />}
+            icon={<FileText className="w-6 h-6 text-[#BF5700]" />}
             title="Class Schedule Import"
             description="Upload your class schedule PDF and we'll make sure games don't conflict with your classes."
           />
           <FeatureCard
-            icon={<Clock className="w-8 h-8 text-[#BF5700]" />}
+            icon={<Clock className="w-6 h-6 text-[#BF5700]" />}
             title="5 Sports Covered"
             description="Men's & Women's Basketball, Baseball, Softball, and Women's Soccer — all in one place."
           />
@@ -70,8 +86,8 @@ export default function LandingPage() {
       </div>
 
       {/* Footer */}
-      <footer className="text-center py-8 text-sm text-gray-500 border-t">
-        Hook &apos;em Horns
+      <footer className="text-center py-10 text-sm text-gray-400 border-t border-gray-100">
+        <p className="font-medium text-[#BF5700]">Hook &apos;em Horns</p>
       </footer>
     </main>
   );
@@ -87,10 +103,14 @@ function FeatureCard({
   description: string;
 }) {
   return (
-    <div className="border rounded-lg p-6">
-      <div className="mb-3">{icon}</div>
+    <div className="glass-card rounded-2xl p-6 hover-lift group">
+      <div className="mb-4 w-12 h-12 rounded-xl bg-gradient-to-br from-[#BF5700]/10 to-[#E87511]/10
+                      flex items-center justify-center
+                      group-hover:from-[#BF5700]/20 group-hover:to-[#E87511]/20 transition-colors">
+        {icon}
+      </div>
       <h3 className="font-semibold text-lg mb-2 text-gray-900">{title}</h3>
-      <p className="text-gray-600">{description}</p>
+      <p className="text-gray-500 leading-relaxed">{description}</p>
     </div>
   );
 }

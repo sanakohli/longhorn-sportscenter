@@ -101,32 +101,32 @@ export default function DashboardPage() {
   );
 
   const tabClass = (tab: ViewTab) =>
-    `px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+    `px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 ${
       view === tab
-        ? "bg-[#BF5700] text-white"
-        : "bg-white text-gray-600 hover:bg-gray-100"
+        ? "bg-gradient-to-r from-[#BF5700] to-[#A04800] text-white shadow-md shadow-[#BF5700]/20"
+        : "bg-white text-gray-500 hover:text-gray-700 hover:bg-gray-50 border border-gray-200"
     }`;
 
   return (
     <div>
       {/* Greeting */}
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold text-gray-900 tracking-tight">
           Hey{session?.user?.name ? `, ${session.user.name.split(" ")[0]}` : ""}!
         </h1>
-        <p className="text-gray-600">
+        <p className="text-gray-500 mt-1">
           Here are your recommended Longhorns games.
         </p>
       </div>
 
       {/* Sync & Upload */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <CalendarSync onSync={fetchRecommendations} />
         <ScheduleUpload />
       </div>
 
       {/* View tabs */}
-      <div className="flex gap-2 mb-4">
+      <div className="flex gap-3 mb-6">
         <button
           onClick={() => setView("recommended")}
           className={tabClass("recommended")}
@@ -134,16 +134,16 @@ export default function DashboardPage() {
           Recommended
         </button>
         <button
-          onClick={() => setView("all")}
-          className={tabClass("all")}
-        >
-          All Games
-        </button>
-        <button
           onClick={() => setView("timeline")}
           className={tabClass("timeline")}
         >
           Timeline
+        </button>
+        <button
+          onClick={() => setView("all")}
+          className={tabClass("all")}
+        >
+          All Games
         </button>
       </div>
 
@@ -156,8 +156,11 @@ export default function DashboardPage() {
 
       {/* Content */}
       {loading ? (
-        <div className="text-center py-12 text-gray-500">
-          Loading recommendations...
+        <div className="text-center py-16 text-gray-400">
+          <div className="inline-flex items-center gap-3">
+            <div className="w-5 h-5 border-2 border-[#BF5700] border-t-transparent rounded-full animate-spin" />
+            <span className="text-sm font-medium">Loading recommendations...</span>
+          </div>
         </div>
       ) : view === "recommended" ? (
         <EventList

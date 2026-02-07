@@ -15,9 +15,9 @@ export default function Navbar() {
   const { data: session } = useSession();
 
   return (
-    <nav className="bg-[#BF5700] text-white">
-      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-14">
-        <Link href="/dashboard" className="font-bold text-lg">
+    <nav className="bg-gradient-to-r from-[#BF5700] to-[#A04800] text-white shadow-md shadow-black/10 sticky top-0 z-50">
+      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
+        <Link href="/dashboard" className="font-bold text-lg tracking-tight">
           Longhorn SportsCenter
         </Link>
 
@@ -26,10 +26,10 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className={`text-sm flex items-center gap-1.5 transition-opacity ${
+              className={`text-sm flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all duration-200 ${
                 pathname === link.href
-                  ? "opacity-100 font-semibold"
-                  : "opacity-75 hover:opacity-100"
+                  ? "bg-white/20 font-semibold"
+                  : "hover:bg-white/10 opacity-80 hover:opacity-100"
               }`}
             >
               <link.icon className="w-4 h-4" />
@@ -42,7 +42,7 @@ export default function Navbar() {
               <img
                 src={session.user.image}
                 alt=""
-                className="w-7 h-7 rounded-full"
+                className="w-8 h-8 rounded-full ring-2 ring-white/30"
               />
             )}
             <span className="text-sm hidden sm:block">
@@ -50,7 +50,7 @@ export default function Navbar() {
             </span>
             <button
               onClick={() => signOut({ callbackUrl: "/" })}
-              className="opacity-75 hover:opacity-100 transition-opacity"
+              className="p-1.5 rounded-lg hover:bg-white/10 opacity-75 hover:opacity-100 transition-all"
               title="Sign out"
             >
               <LogOut className="w-4 h-4" />

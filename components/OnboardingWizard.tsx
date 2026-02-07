@@ -67,12 +67,14 @@ export default function OnboardingWizard() {
   return (
     <div className="max-w-lg mx-auto">
       {/* Progress */}
-      <div className="flex gap-2 mb-8">
+      <div className="flex gap-2 mb-10">
         {[1, 2, 3].map((s) => (
           <div
             key={s}
-            className={`h-2 flex-1 rounded-full ${
-              s <= step ? "bg-[#BF5700]" : "bg-gray-200"
+            className={`h-2 flex-1 rounded-full transition-all duration-500 ${
+              s <= step
+                ? "bg-gradient-to-r from-[#BF5700] to-[#E87511] shadow-sm shadow-[#BF5700]/30"
+                : "bg-gray-200"
             }`}
           />
         ))}
@@ -81,8 +83,8 @@ export default function OnboardingWizard() {
       {/* Step 1: Pick Sports */}
       {step === 1 && (
         <div>
-          <h2 className="text-2xl font-bold mb-2">Pick your sports</h2>
-          <p className="text-gray-600 mb-6">
+          <h2 className="text-2xl font-bold mb-2 text-gray-900 tracking-tight">Pick your sports</h2>
+          <p className="text-gray-500 mb-8">
             Which Longhorns sports do you want to follow?
           </p>
           <div className="grid grid-cols-1 gap-3">
@@ -90,10 +92,10 @@ export default function OnboardingWizard() {
               <button
                 key={sport}
                 onClick={() => toggleSport(sport)}
-                className={`p-4 rounded-lg border-2 text-left transition-colors ${
+                className={`p-4 rounded-xl border-2 text-left transition-all duration-200 ${
                   favoriteSports.includes(sport)
-                    ? "border-[#BF5700] bg-orange-50"
-                    : "border-gray-200 hover:border-gray-300"
+                    ? "border-[#BF5700] bg-gradient-to-r from-orange-50 to-white shadow-sm shadow-[#BF5700]/10"
+                    : "border-gray-200 hover:border-gray-300 hover:bg-gray-50"
                 }`}
               >
                 <span
@@ -112,7 +114,7 @@ export default function OnboardingWizard() {
           <button
             onClick={() => setStep(2)}
             disabled={favoriteSports.length === 0}
-            className="mt-6 w-full bg-[#BF5700] text-white py-3 rounded-lg font-semibold disabled:opacity-50 hover:bg-[#A04800] transition-colors"
+            className="mt-8 w-full bg-gradient-to-r from-[#BF5700] to-[#A04800] text-white py-3.5 rounded-xl font-semibold disabled:opacity-50 hover:shadow-lg hover:shadow-[#BF5700]/20 hover:scale-[1.01] active:scale-[0.99] transition-all duration-200"
           >
             Continue
           </button>
@@ -122,46 +124,44 @@ export default function OnboardingWizard() {
       {/* Step 2: Game Preferences */}
       {step === 2 && (
         <div>
-          <h2 className="text-2xl font-bold mb-2">Game preferences</h2>
-          <p className="text-gray-600 mb-6">
+          <h2 className="text-2xl font-bold mb-2 text-gray-900 tracking-tight">Game preferences</h2>
+          <p className="text-gray-500 mb-8">
             Help us recommend the best games for you.
           </p>
 
           <div className="space-y-6">
             {/* Home games toggle */}
-            <label className="flex items-center justify-between">
-              <span>Prefer home games</span>
+            <label className="flex items-center justify-between py-1">
+              <span className="text-gray-900">Prefer home games</span>
               <input
                 type="checkbox"
                 checked={preferHomeGames}
                 onChange={(e) => setPreferHomeGames(e.target.checked)}
-                className="w-5 h-5 accent-[#BF5700]"
               />
             </label>
 
             {/* Rivalry games toggle */}
-            <label className="flex items-center justify-between">
-              <span>Boost rivalry games</span>
+            <label className="flex items-center justify-between py-1">
+              <span className="text-gray-900">Boost rivalry games</span>
               <input
                 type="checkbox"
                 checked={preferRivalryGames}
                 onChange={(e) => setPreferRivalryGames(e.target.checked)}
-                className="w-5 h-5 accent-[#BF5700]"
               />
             </label>
 
             {/* Time slots */}
             <div>
-              <p className="font-medium mb-2">Preferred game times</p>
+              <p className="font-medium mb-2 text-gray-900">Preferred game times</p>
               <div className="grid grid-cols-2 gap-2">
                 {TIME_SLOTS.map((slot) => (
                   <button
                     key={slot.value}
                     onClick={() => toggleTimeSlot(slot.value)}
-                    className={`p-3 rounded-lg border text-sm transition-colors ${
+                    className={`p-3.5 rounded-xl border-2 text-sm font-medium transition-all duration-200 ${
                       preferredTimeSlots.includes(slot.value)
-                        ? "border-[#BF5700] bg-orange-50"
-                        : "border-gray-200 hover:border-gray-300"
+                        ? "border-[#BF5700] bg-gradient-to-r from-orange-50 to-white shadow-sm"
+                        : "border-gray-200 hover:border-gray-300 hover:bg-gray-50"
                     }`}
                   >
                     {slot.label}
@@ -172,7 +172,7 @@ export default function OnboardingWizard() {
 
             {/* Max events slider */}
             <div>
-              <p className="font-medium mb-2">
+              <p className="font-medium mb-2 text-gray-900">
                 Max games per week: {maxEventsPerWeek}
               </p>
               <input
@@ -183,32 +183,31 @@ export default function OnboardingWizard() {
                 onChange={(e) =>
                   setMaxEventsPerWeek(parseInt(e.target.value))
                 }
-                className="w-full accent-[#BF5700]"
+                className="w-full"
               />
             </div>
 
             {/* Auto-add toggle */}
-            <label className="flex items-center justify-between">
-              <span>Auto-add recommended games to calendar</span>
+            <label className="flex items-center justify-between py-1">
+              <span className="text-gray-900">Auto-add recommended games to calendar</span>
               <input
                 type="checkbox"
                 checked={autoAddToCalendar}
                 onChange={(e) => setAutoAddToCalendar(e.target.checked)}
-                className="w-5 h-5 accent-[#BF5700]"
               />
             </label>
           </div>
 
-          <div className="flex gap-3 mt-6">
+          <div className="flex gap-3 mt-8">
             <button
               onClick={() => setStep(1)}
-              className="flex-1 border border-gray-300 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
+              className="flex-1 border border-gray-200 py-3.5 rounded-xl font-semibold text-gray-600 hover:bg-gray-50 hover:border-gray-300 transition-all duration-200"
             >
               Back
             </button>
             <button
               onClick={() => setStep(3)}
-              className="flex-1 bg-[#BF5700] text-white py-3 rounded-lg font-semibold hover:bg-[#A04800] transition-colors"
+              className="flex-1 bg-gradient-to-r from-[#BF5700] to-[#A04800] text-white py-3.5 rounded-xl font-semibold hover:shadow-lg hover:shadow-[#BF5700]/20 hover:scale-[1.01] active:scale-[0.99] transition-all duration-200"
             >
               Continue
             </button>
@@ -219,12 +218,12 @@ export default function OnboardingWizard() {
       {/* Step 3: Review */}
       {step === 3 && (
         <div>
-          <h2 className="text-2xl font-bold mb-2">Review & save</h2>
-          <p className="text-gray-600 mb-6">
+          <h2 className="text-2xl font-bold mb-2 text-gray-900 tracking-tight">Review & save</h2>
+          <p className="text-gray-500 mb-8">
             Here&apos;s a summary of your preferences.
           </p>
 
-          <div className="space-y-4 bg-gray-50 rounded-lg p-4">
+          <div className="space-y-4 glass-card rounded-2xl p-6">
             <div>
               <p className="text-sm text-gray-500">Sports</p>
               <p className="font-medium">
@@ -270,17 +269,17 @@ export default function OnboardingWizard() {
             </div>
           </div>
 
-          <div className="flex gap-3 mt-6">
+          <div className="flex gap-3 mt-8">
             <button
               onClick={() => setStep(2)}
-              className="flex-1 border border-gray-300 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
+              className="flex-1 border border-gray-200 py-3.5 rounded-xl font-semibold text-gray-600 hover:bg-gray-50 hover:border-gray-300 transition-all duration-200"
             >
               Back
             </button>
             <button
               onClick={handleSubmit}
               disabled={saving}
-              className="flex-1 bg-[#BF5700] text-white py-3 rounded-lg font-semibold disabled:opacity-50 hover:bg-[#A04800] transition-colors"
+              className="flex-1 bg-gradient-to-r from-[#BF5700] to-[#A04800] text-white py-3.5 rounded-xl font-semibold disabled:opacity-50 hover:shadow-lg hover:shadow-[#BF5700]/20 hover:scale-[1.01] active:scale-[0.99] transition-all duration-200"
             >
               {saving ? "Saving..." : "Save & Continue"}
             </button>
