@@ -33,6 +33,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
   ],
   callbacks: {
+    async redirect({ url, baseUrl }) {
+      // Always send users to dashboard after login
+      if (url.startsWith(baseUrl)) {
+        return `${baseUrl}/dashboard`;
+      }
+      return url;
+    },
     async signIn({ user, account }) {
       if (!account || !user.email) return false;
 
