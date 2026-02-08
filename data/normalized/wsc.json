@@ -33,7 +33,7 @@
     "venue": "George Allen Field",
     "city": "Long Beach, Calif.",
     "tvNetwork": "ESPN+",
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsc-2025-08-21-arizona-state",
@@ -57,7 +57,7 @@
     "venue": "Carl Lewis International Complex",
     "city": "Houston, Texas",
     "tvNetwork": "ESPN+",
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsc-2025-08-28-tcu",
@@ -93,7 +93,7 @@
     "venue": "Betty Lou Mays Field",
     "city": "Waco, Texas",
     "tvNetwork": "ESPN+",
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsc-2025-09-12-missouri",
@@ -105,7 +105,7 @@
     "venue": "Audrey J. Walton Soccer Stadium",
     "city": "Columbia, Mo.",
     "tvNetwork": "SEC Network+",
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsc-2025-09-18-mississippi-state",
@@ -129,7 +129,7 @@
     "venue": "Alabama Soccer Stadium",
     "city": "Tuscaloosa, Ala.",
     "tvNetwork": "SEC Network+",
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsc-2025-09-26-vanderbilt",
@@ -153,7 +153,7 @@
     "venue": "Ellis Field",
     "city": "College Station, Texas",
     "tvNetwork": "SEC Network",
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsc-2025-10-05-florida",
@@ -177,7 +177,7 @@
     "venue": "Eugene E. Stone III Stadium",
     "city": "Columbia, S.C.",
     "tvNetwork": "SEC Network",
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsc-2025-10-16-georgia",
@@ -201,7 +201,7 @@
     "venue": "John Crain Field",
     "city": "Norman, Okla.",
     "tvNetwork": "SEC Network+",
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsc-2025-10-26-ole-miss",

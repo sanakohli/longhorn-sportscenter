@@ -321,7 +321,7 @@
     "venue": "Stegeman Coliseum",
     "city": "Athens, GA",
     "tvNetwork": "SEC Network",
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "mbb-2026-02-25-florida",
@@ -345,7 +345,7 @@
     "venue": "Reed Arena",
     "city": "College Station, TX",
     "tvNetwork": "ESPN/ESPN2",
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "mbb-2026-03-04-arkansas",
@@ -357,7 +357,7 @@
     "venue": "Bud Walton Arena",
     "city": "Fayetteville, AR",
     "tvNetwork": "ESPN2/ESPNU",
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "mbb-2026-03-07-oklahoma",

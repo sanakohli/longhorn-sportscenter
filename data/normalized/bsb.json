@@ -117,7 +117,7 @@
     "venue": "Daikin Park",
     "city": "",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "bsb-2026-02-28-baylor",
@@ -129,7 +129,7 @@
     "venue": "Daikin Park",
     "city": "",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "bsb-2026-03-01-ohio-state",
@@ -141,7 +141,7 @@
     "venue": "Daikin Park",
     "city": "",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "bsb-2026-03-03-houston-christian",
@@ -201,7 +201,7 @@
     "venue": "San Marcos TX",
     "city": "",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "bsb-2026-03-13-ole-miss",
@@ -261,7 +261,7 @@
     "venue": "Auburn AL",
     "city": "",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "bsb-2026-03-21-auburn",
@@ -273,7 +273,7 @@
     "venue": "Auburn AL",
     "city": "",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "bsb-2026-03-22-auburn",
@@ -285,7 +285,7 @@
     "venue": "Auburn AL",
     "city": "",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "bsb-2026-03-24-houston",
@@ -297,7 +297,7 @@
     "venue": "Houston TX",
     "city": "",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "bsb-2026-03-26-oklahoma",
@@ -357,7 +357,7 @@
     "venue": "Columbia SC",
     "city": "",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "bsb-2026-04-03-south-carolina",
@@ -369,7 +369,7 @@
     "venue": "Columbia SC",
     "city": "",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "bsb-2026-04-04-south-carolina",
@@ -381,7 +381,7 @@
     "venue": "Columbia SC",
     "city": "",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "bsb-2026-04-07-incarnate-word",
@@ -405,7 +405,7 @@
     "venue": "College Station TX",
     "city": "",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "bsb-2026-04-11-texas-a&m",
@@ -417,7 +417,7 @@
     "venue": "College Station TX",
     "city": "",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "bsb-2026-04-12-texas-a&m",
@@ -429,7 +429,7 @@
     "venue": "College Station TX",
     "city": "",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "bsb-2026-04-14-texas-a&m\u2013corpus-christi",
@@ -501,7 +501,7 @@
     "venue": "Nashville TN",
     "city": "",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "bsb-2026-04-25-vanderbilt",
@@ -513,7 +513,7 @@
     "venue": "Nashville TN",
     "city": "",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "bsb-2026-04-26-vanderbilt",
@@ -525,7 +525,7 @@
     "venue": "Nashville TN",
     "city": "",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "bsb-2026-04-28-sam-houston",
@@ -597,7 +597,7 @@
     "venue": "Knoxville TN",
     "city": "",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "bsb-2026-05-09-tennessee",
@@ -609,7 +609,7 @@
     "venue": "Knoxville TN",
     "city": "",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "bsb-2026-05-10-tennessee",
@@ -621,7 +621,7 @@
     "venue": "Knoxville TN",
     "city": "",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "bsb-2026-05-14-missouri",

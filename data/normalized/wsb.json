@@ -9,7 +9,7 @@
     "venue": "Roadrunner Field",
     "city": "San Antonio, TX",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsb-2026-02-07-washington",
@@ -21,7 +21,7 @@
     "venue": "Roadrunner Field",
     "city": "San Antonio, TX",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsb-2026-02-07-nebraska",
@@ -33,7 +33,7 @@
     "venue": "Roadrunner Field",
     "city": "San Antonio, TX",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsb-2026-02-08-washington",
@@ -45,7 +45,7 @@
     "venue": "Roadrunner Field",
     "city": "San Antonio, TX",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsb-2026-02-08-utsa",
@@ -57,7 +57,7 @@
     "venue": "Roadrunner Field",
     "city": "San Antonio, TX",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsb-2026-02-12-abilene-christian",
@@ -141,7 +141,7 @@
     "venue": "Stanford Softball Stadium",
     "city": "Palo Alto, CA",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsb-2026-02-20-stanford",
@@ -153,7 +153,7 @@
     "venue": "Stanford Softball Stadium",
     "city": "Palo Alto, CA",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsb-2026-02-21-santa-clara",
@@ -165,7 +165,7 @@
     "venue": "Stanford Softball Stadium",
     "city": "Palo Alto, CA",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsb-2026-02-21-boise-state",
@@ -177,7 +177,7 @@
     "venue": "Stanford Softball Stadium",
     "city": "Palo Alto, CA",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsb-2026-02-22-arizona",
@@ -189,7 +189,7 @@
     "venue": "Stanford Softball Stadium",
     "city": "Palo Alto, CA",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsb-2026-02-25-southeastern-louisiana",
@@ -261,7 +261,7 @@
     "venue": "Carolina Softball Stadium",
     "city": "Columbia, SC",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsb-2026-03-07-south-carolina",
@@ -273,7 +273,7 @@
     "venue": "Carolina Softball Stadium",
     "city": "Columbia, SC",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsb-2026-03-08-south-carolina",
@@ -285,7 +285,7 @@
     "venue": "Carolina Softball Stadium",
     "city": "Columbia, SC",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsb-2026-03-11-east-texas-a&m",
@@ -357,7 +357,7 @@
     "venue": "Getterman Stadium",
     "city": "Waco, TX",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsb-2026-03-25-texas-state",
@@ -369,7 +369,7 @@
     "venue": "Bobcat Softball Stadium",
     "city": "San Marcos, TX",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsb-2026-03-27-texas-a&m",
@@ -417,7 +417,7 @@
     "venue": "Rhoads Stadium",
     "city": "Tuscaloosa, AL",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsb-2026-04-03-alabama",
@@ -429,7 +429,7 @@
     "venue": "Rhoads Stadium",
     "city": "Tuscaloosa, AL",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsb-2026-04-04-alabama",
@@ -441,7 +441,7 @@
     "venue": "Rhoads Stadium",
     "city": "Tuscaloosa, AL",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsb-2026-04-10-oklahoma",
@@ -489,7 +489,7 @@
     "venue": "Jack Turner Softball Stadium",
     "city": "Athens, GA",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsb-2026-04-19-georgia",
@@ -501,7 +501,7 @@
     "venue": "Jack Turner Softball Stadium",
     "city": "Athens, GA",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsb-2026-04-20-georgia",
@@ -513,7 +513,7 @@
     "venue": "Jack Turner Softball Stadium",
     "city": "Athens, GA",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsb-2026-04-22-oklahoma-state",
@@ -537,7 +537,7 @@
     "venue": "John Cropp Stadium",
     "city": "Lexington, KY",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsb-2026-04-25-kentucky",
@@ -549,7 +549,7 @@
     "venue": "John Cropp Stadium",
     "city": "Lexington, KY",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsb-2026-04-26-kentucky",
@@ -561,7 +561,7 @@
     "venue": "John Cropp Stadium",
     "city": "Lexington, KY",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsb-2026-04-30-arkansas",
@@ -609,7 +609,7 @@
     "venue": "John Cropp Stadium",
     "city": "Lexington, KY",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsb-2026-05-06-tbd",
@@ -621,7 +621,7 @@
     "venue": "John Cropp Stadium",
     "city": "Lexington, KY",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsb-2026-05-07-tbd",
@@ -633,7 +633,7 @@
     "venue": "John Cropp Stadium",
     "city": "Lexington, KY",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsb-2026-05-08-tbd",
@@ -645,7 +645,7 @@
     "venue": "John Cropp Stadium",
     "city": "Lexington, KY",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wsb-2026-05-09-tbd",
@@ -657,6 +657,6 @@
     "venue": "John Cropp Stadium",
     "city": "Lexington, KY",
     "tvNetwork": null,
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   }
 ]

@@ -129,7 +129,7 @@
     "venue": "UTRGV Fieldhouse",
     "city": "Edinburg, TX",
     "tvNetwork": "ESPN+",
-    "bigTicketRequired": true
+    "bigTicketRequired": false
   },
   {
     "id": "wbb-2025-12-14-baylor",
