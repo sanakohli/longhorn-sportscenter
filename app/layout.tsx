@@ -19,6 +19,9 @@ export const metadata: Metadata = {
   title: "Longhorn SportsCenter",
   description:
     "Never miss a Longhorns game. Smart scheduling, Google Calendar sync, and personalized recommendations for UT sports.",
+  verification: {
+    google: "LUAumBJ_craKBhV00nWYDQ621R7rImkWqX0z8g3r3Oc",
+  },
 };
 
 export default function RootLayout({

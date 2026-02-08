@@ -90,6 +90,9 @@ export default function LandingPage() {
       {/* Footer */}
       <footer className="text-center py-10 text-sm text-gray-400 border-t border-gray-100">
         <p className="font-medium text-[#BF5700]">Hook &apos;em Horns</p>
+        <a href="/privacy" className="mt-2 inline-block text-gray-400 hover:text-gray-600 underline">
+          Privacy Policy
+        </a>
       </footer>
     </main>
   );
