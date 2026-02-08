@@ -81,8 +81,8 @@ export default function LandingPage() {
           />
           <FeatureCard
             icon={<Clock className="w-6 h-6 text-[#BF5700]" />}
-            title="5 Sports Covered"
-            description="Men's & Women's Basketball, Baseball, Softball, and Women's Soccer — all in one place."
+            title="7 Sports Covered"
+            description="Football, Volleyball, Men's & Women's Basketball, Baseball, Softball, and Soccer — all in one place."
           />
         </div>
       </div>

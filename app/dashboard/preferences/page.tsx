@@ -7,6 +7,8 @@ import {
   FaBasketballBall,
   FaBaseballBall,
   FaFutbol,
+  FaVolleyballBall,
+  FaFootballBall
 } from "react-icons/fa";
 import { SPORTS, ALL_SPORTS } from "@/lib/constants";
 import type { Sport } from "@/data/normalized/schema";
@@ -24,6 +26,8 @@ const SPORT_ICONS: Record<string, React.ElementType> = {
   bsb: FaBaseballBall,   // Baseball
   wsb: FaBaseballBall,   // Softball (closest match)
   wsc: FaFutbol,         // Soccer
+  fb:  FaFootballBall,            // Football (closest match)
+  vball: FaVolleyballBall,         // Volleyball (closest match)
 };
 
 

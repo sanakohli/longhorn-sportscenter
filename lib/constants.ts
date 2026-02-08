@@ -38,6 +38,18 @@ export const SPORTS: Record<Sport, SportInfo> = {
     color: "#00853E",
     estimatedDurationMinutes: 120,
   },
+  fb: {
+    abbr: "fb",
+    displayName: "Football",
+    color: "#8B4513",
+    estimatedDurationMinutes: 210,
+  },
+  wvb: {
+    abbr: "wvb",
+    displayName: "Volleyball",
+    color: "#E8601C",
+    estimatedDurationMinutes: 120,
+  },
 };
 
 export const ALL_SPORTS = Object.keys(SPORTS) as Sport[];

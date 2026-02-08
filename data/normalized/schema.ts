@@ -1,4 +1,4 @@
-export type Sport = "mbb" | "wbb" | "bsb" | "wsb" | "wsc";
+export type Sport = "mbb" | "wbb" | "bsb" | "wsb" | "wsc" | "fb" | "wvb";
 
 export interface Event {
   id: string;
