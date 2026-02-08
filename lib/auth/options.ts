@@ -104,6 +104,17 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       session.accessToken = token.accessToken as string | undefined;
       return session;
     },
+    async redirect({ url, baseUrl }) {
+      // If the url is the root/landing page, go to dashboard
+      if (url === "/" || url === baseUrl) {
+        return `${baseUrl}/dashboard`;
+      }
+      // Allow relative callback URLs
+      if (url.startsWith("/")) return `${baseUrl}${url}`;
+      // Allow callback URLs on the same origin
+      if (new URL(url).origin === baseUrl) return url;
+      return baseUrl;
+    },
   },
   pages: {
     signIn: "/",
