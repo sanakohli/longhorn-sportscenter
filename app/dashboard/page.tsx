@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import EventList from "@/components/EventList";
 import SportFilter from "@/components/SportFilter";
 import CalendarSync from "@/components/CalendarSync";
-import ScheduleUpload from "@/components/ScheduleUpload";
+import SocialFeed from "@/components/SocialFeed";
 import { events as allEvents } from "@/app/events";
 import type { Event, Sport } from "@/data/normalized/schema";
 import { ALL_SPORTS } from "@/lib/constants";
@@ -125,108 +125,115 @@ export default function DashboardPage() {
     }`;
 
   return (
-    <div>
-      {/* Greeting */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 tracking-tight">
-          Hey{session?.user?.name ? `, ${session.user.name.split(" ")[0]}` : ""}!
-        </h1>
-        <p className="text-gray-500 mt-1">
-          Here are your recommended Longhorns games.
-        </p>
-      </div>
-
-      {/* Sync & Upload */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        <CalendarSync onSync={fetchRecommendations} />
-        <ScheduleUpload />
-      </div>
-
-      {/* View tabs */}
-      <div className="flex gap-3 mb-6">
-        <button
-          onClick={() => setView("recommended")}
-          className={tabClass("recommended")}
-        >
-          Recommended
-        </button>
-        <button
-          onClick={() => setView("timeline")}
-          className={tabClass("timeline")}
-        >
-          Timeline
-        </button>
-        <button
-          onClick={() => setView("all")}
-          className={tabClass("all")}
-        >
-          All Games
-        </button>
-      </div>
-
-      {/* Sub-tabs for recommended view */}
-      {view === "recommended" && (
-        <div className="flex gap-2 mb-4">
-          <button onClick={() => setRecSubTab("all")} className={subTabClass("all")}>
-            All
-          </button>
-          <button onClick={() => setRecSubTab("home")} className={subTabClass("home")}>
-            Home
-          </button>
-          <button onClick={() => setRecSubTab("away")} className={subTabClass("away")}>
-            Away
-          </button>
-        </div>
-      )}
-
-      {/* Sport filter (for all/timeline views) */}
-      {view !== "recommended" && (
-        <div className="mb-4">
-          <SportFilter selected={sportFilter} onChange={setSportFilter} />
-        </div>
-      )}
-
-      {/* Content */}
-      {loading ? (
-        <div className="text-center py-16 text-gray-400">
-          <div className="inline-flex items-center gap-3">
-            <div className="w-5 h-5 border-2 border-[#BF5700] border-t-transparent rounded-full animate-spin" />
-            <span className="text-sm font-medium">Loading recommendations...</span>
+    <div className="flex gap-8">
+      {/* Main content */}
+      <div className="flex-1 min-w-0">
+        {/* Greeting + Calendar sync */}
+        <div className="flex items-start justify-between gap-4 mb-8">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900 tracking-tight">
+              Hey{session?.user?.name ? `, ${session.user.name.split(" ")[0]}` : ""}!
+            </h1>
+            <p className="text-gray-500 mt-1">
+              Here are your recommended Longhorns games.
+            </p>
           </div>
+          <CalendarSync onSync={fetchRecommendations} />
         </div>
-      ) : view === "recommended" ? (
-        <EventList
-          events={filteredRecommended}
-          addedEventIds={addedEventIds}
-          eventConflicts={eventConflicts}
-          onAdd={handleAdd}
-          onRemove={handleRemove}
-          showReasons
-          emptyMessage={
-            recSubTab === "all"
-              ? "No recommendations yet. Try syncing your calendar or updating your preferences."
-              : `No ${recSubTab} game recommendations.`
-          }
-        />
-      ) : view === "all" ? (
-        <EventList
-          events={filteredAllEvents}
-          addedEventIds={addedEventIds}
-          eventConflicts={eventConflicts}
-          onAdd={handleAdd}
-          onRemove={handleRemove}
-          emptyMessage="No upcoming games match your filters."
-        />
-      ) : (
-        <EventList
-          events={timelineEvents}
-          addedEventIds={addedEventIds}
-          eventConflicts={eventConflicts}
-          onAdd={handleAdd}
-          onRemove={handleRemove}
-          emptyMessage="No upcoming games match your filters."
-        />
-      )}
+
+        {/* View tabs */}
+        <div className="flex gap-3 mb-6">
+          <button
+            onClick={() => setView("recommended")}
+            className={tabClass("recommended")}
+          >
+            Recommended
+          </button>
+          <button
+            onClick={() => setView("timeline")}
+            className={tabClass("timeline")}
+          >
+            Timeline
+          </button>
+          <button
+            onClick={() => setView("all")}
+            className={tabClass("all")}
+          >
+            All Games
+          </button>
+        </div>
+
+        {/* Sub-tabs for recommended view */}
+        {view === "recommended" && (
+          <div className="flex gap-2 mb-4">
+            <button onClick={() => setRecSubTab("all")} className={subTabClass("all")}>
+              All
+            </button>
+            <button onClick={() => setRecSubTab("home")} className={subTabClass("home")}>
+              Home
+            </button>
+            <button onClick={() => setRecSubTab("away")} className={subTabClass("away")}>
+              Away
+            </button>
+          </div>
+        )}
+
+        {/* Sport filter (for all/timeline views) */}
+        {view !== "recommended" && (
+          <div className="mb-4">
+            <SportFilter selected={sportFilter} onChange={setSportFilter} />
+          </div>
+        )}
+
+        {/* Content */}
+        {loading ? (
+          <div className="text-center py-16 text-gray-400">
+            <div className="inline-flex items-center gap-3">
+              <div className="w-5 h-5 border-2 border-[#BF5700] border-t-transparent rounded-full animate-spin" />
+              <span className="text-sm font-medium">Loading recommendations...</span>
+            </div>
+          </div>
+        ) : view === "recommended" ? (
+          <EventList
+            events={filteredRecommended}
+            addedEventIds={addedEventIds}
+            eventConflicts={eventConflicts}
+            onAdd={handleAdd}
+            onRemove={handleRemove}
+            showReasons
+            emptyMessage={
+              recSubTab === "all"
+                ? "No recommendations yet. Try syncing your calendar or updating your preferences."
+                : `No ${recSubTab} game recommendations.`
+            }
+          />
+        ) : view === "all" ? (
+          <EventList
+            events={filteredAllEvents}
+            addedEventIds={addedEventIds}
+            eventConflicts={eventConflicts}
+            onAdd={handleAdd}
+            onRemove={handleRemove}
+            emptyMessage="No upcoming games match your filters."
+          />
+        ) : (
+          <EventList
+            events={timelineEvents}
+            addedEventIds={addedEventIds}
+            eventConflicts={eventConflicts}
+            onAdd={handleAdd}
+            onRemove={handleRemove}
+            emptyMessage="No upcoming games match your filters."
+          />
+        )}
+      </div>
+
+      {/* Sidebar */}
+      <div className="hidden lg:block w-72 shrink-0">
+        <div className="sticky top-6">
+          <SocialFeed />
+        </div>
+      </div>
     </div>
   );
 }
