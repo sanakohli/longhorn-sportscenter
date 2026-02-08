@@ -1,56 +1,44 @@
-import { getToken } from "next-auth/jwt";
+import { auth } from "@/lib/auth/options";
 import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
 
-export async function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
-
-  // ✅ Always allow NextAuth routes
-  if (pathname.startsWith("/api/auth")) {
-    return NextResponse.next();
-  }
-
-  const token = await getToken({
-    req: request,
-    secret: process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET,
-  });
+export default auth((req) => {
+  const session = req.auth;
+  const { pathname } = req.nextUrl;
 
   // Protect dashboard routes
   if (pathname.startsWith("/dashboard")) {
-    if (!token) {
-      return NextResponse.redirect(new URL("/", request.url));
+    if (!session) {
+      return NextResponse.redirect(new URL("/", req.url));
     }
-
-    if (!token.onboardingCompleted) {
-      return NextResponse.redirect(new URL("/onboarding", request.url));
+    if (!session.user.onboardingCompleted) {
+      return NextResponse.redirect(new URL("/onboarding", req.url));
     }
   }
 
   // Protect onboarding route
   if (pathname.startsWith("/onboarding")) {
-    if (!token) {
-      return NextResponse.redirect(new URL("/", request.url));
+    if (!session) {
+      return NextResponse.redirect(new URL("/", req.url));
     }
-
-    if (token.onboardingCompleted) {
-      return NextResponse.redirect(new URL("/dashboard", request.url));
+    if (session.user.onboardingCompleted) {
+      return NextResponse.redirect(new URL("/dashboard", req.url));
     }
   }
 
   // Redirect authenticated users from landing page
   if (pathname === "/") {
-    if (token) {
+    if (session) {
       return NextResponse.redirect(
         new URL(
-          token.onboardingCompleted ? "/dashboard" : "/onboarding",
-          request.url
+          session.user.onboardingCompleted ? "/dashboard" : "/onboarding",
+          req.url
         )
       );
     }
   }
 
   return NextResponse.next();
-}
+});
 
 export const config = {
   matcher: ["/", "/dashboard/:path*", "/onboarding/:path*"],
