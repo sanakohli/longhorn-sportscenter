@@ -1,16 +1,15 @@
 import { NextResponse } from "next/server";
-import { getToken } from "next-auth/jwt";
-import type { NextRequest } from "next/server";
+import { auth } from "@/lib/auth/options";
 import { readCalendarEvents } from "@/lib/google/calendar";
 import { supabaseAdmin } from "@/lib/supabase/server";
 
-export async function GET(request: NextRequest) {
-  const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
-  if (!token?.userId) {
+export async function GET() {
+  const session = await auth();
+  if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const userId = token.userId as string;
+  const userId = session.user.id;
 
   const now = new Date();
   const timeMin = now.toISOString();

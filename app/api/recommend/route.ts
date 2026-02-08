@@ -1,18 +1,17 @@
 import { NextResponse } from "next/server";
-import { getToken } from "next-auth/jwt";
-import type { NextRequest } from "next/server";
+import { auth } from "@/lib/auth/options";
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { events } from "@/app/events";
 import { generateRecommendations, getEventConflicts } from "@/lib/scheduling/algorithm";
 import type { UserPreferences, BusyTime } from "@/lib/scheduling/types";
 
-export async function GET(request: NextRequest) {
-  const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
-  if (!token?.userId) {
+export async function GET() {
+  const session = await auth();
+  if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const userId = token.userId as string;
+  const userId = session.user.id;
 
   // Fetch preferences
   const { data: prefs } = await supabaseAdmin

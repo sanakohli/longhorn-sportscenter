@@ -1,19 +1,18 @@
 import { NextResponse } from "next/server";
-import { getToken } from "next-auth/jwt";
-import type { NextRequest } from "next/server";
+import { auth } from "@/lib/auth/options";
 import { addCalendarEvent } from "@/lib/google/calendar";
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { events } from "@/app/events";
 import { SPORTS } from "@/lib/constants";
 import { fromZonedTime } from "date-fns-tz";
 
-export async function POST(request: NextRequest) {
-  const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
-  if (!token?.userId) {
+export async function POST(request: Request) {
+  const session = await auth();
+  if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const userId = token.userId as string;
+  const userId = session.user.id;
   const { eventId } = await request.json();
 
   const sportEvent = events.find((e) => e.id === eventId);

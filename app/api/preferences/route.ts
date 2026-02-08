@@ -1,18 +1,17 @@
 import { NextResponse } from "next/server";
-import { getToken } from "next-auth/jwt";
-import type { NextRequest } from "next/server";
+import { auth } from "@/lib/auth/options";
 import { supabaseAdmin } from "@/lib/supabase/server";
 
-export async function GET(request: NextRequest) {
-  const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
-  if (!token?.userId) {
+export async function GET() {
+  const session = await auth();
+  if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   const { data, error } = await supabaseAdmin
     .from("user_preferences")
     .select("*")
-    .eq("user_id", token.userId)
+    .eq("user_id", session.user.id)
     .single();
 
   if (error && error.code !== "PGRST116") {
@@ -22,9 +21,9 @@ export async function GET(request: NextRequest) {
   return NextResponse.json(data ?? {});
 }
 
-export async function POST(request: NextRequest) {
-  const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
-  if (!token?.userId) {
+export async function POST(request: Request) {
+  const session = await auth();
+  if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
@@ -34,7 +33,7 @@ export async function POST(request: NextRequest) {
     .from("user_preferences")
     .upsert(
       {
-        user_id: token.userId,
+        user_id: session.user.id,
         favorite_sports: body.favorite_sports,
         prefer_home_games: body.prefer_home_games,
         prefer_rivalry_games: body.prefer_rivalry_games,
@@ -57,7 +56,7 @@ export async function POST(request: NextRequest) {
       onboarding_completed: true,
       updated_at: new Date().toISOString(),
     })
-    .eq("id", token.userId);
+    .eq("id", session.user.id);
 
   return NextResponse.json({ success: true });
 }
