@@ -106,6 +106,17 @@ export default function EventCard({
             >
               {event.sport.toUpperCase()}
             </span>
+            <span
+              className={`text-xs font-bold px-2.5 py-1 rounded-full border ${
+                event.homeAway === "home"
+                  ? "text-green-700 bg-green-50 border-green-200"
+                  : event.homeAway === "away"
+                  ? "text-blue-700 bg-blue-50 border-blue-200"
+                  : "text-gray-600 bg-gray-50 border-gray-200"
+              }`}
+            >
+              {event.homeAway === "home" ? "HOME" : event.homeAway === "away" ? "AWAY" : "NEUTRAL"}
+            </span>
             {event.bigTicketRequired && (
               <span className="text-xs font-semibold text-amber-700 bg-gradient-to-r from-amber-50 to-amber-100 px-2.5 py-1 rounded-full border border-amber-200">
                 Big Ticket

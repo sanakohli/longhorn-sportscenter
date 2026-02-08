@@ -25,6 +25,7 @@ interface Recommendations {
 }
 
 type ViewTab = "recommended" | "all" | "timeline";
+type RecSubTab = "all" | "home" | "away";
 
 export default function DashboardPage() {
   const { data: session } = useSession();
@@ -36,6 +37,7 @@ export default function DashboardPage() {
     useState<Recommendations | null>(null);
   const [addedEventIds, setAddedEventIds] = useState<Set<string>>(new Set());
   const [eventConflicts, setEventConflicts] = useState<Map<string, string>>(new Map());
+  const [recSubTab, setRecSubTab] = useState<RecSubTab>("all");
   const [loading, setLoading] = useState(true);
 
   const fetchRecommendations = useCallback(async () => {
@@ -100,11 +102,26 @@ export default function DashboardPage() {
     (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
   );
 
+  // Filter recommended events by home/away sub-tab
+  const filteredRecommended = (recommendations?.recommended ?? []).filter(
+    (item) =>
+      recSubTab === "all" ||
+      (recSubTab === "home" && item.event.homeAway === "home") ||
+      (recSubTab === "away" && item.event.homeAway === "away")
+  );
+
   const tabClass = (tab: ViewTab) =>
     `px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 ${
       view === tab
         ? "bg-gradient-to-r from-[#BF5700] to-[#A04800] text-white shadow-md shadow-[#BF5700]/20"
         : "bg-white text-gray-500 hover:text-gray-700 hover:bg-gray-50 border border-gray-200"
+    }`;
+
+  const subTabClass = (tab: RecSubTab) =>
+    `px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 ${
+      recSubTab === tab
+        ? "bg-[#BF5700]/10 text-[#BF5700] border border-[#BF5700]/20"
+        : "text-gray-400 hover:text-gray-600 hover:bg-gray-50"
     }`;
 
   return (
@@ -147,6 +164,21 @@ export default function DashboardPage() {
         </button>
       </div>
 
+      {/* Sub-tabs for recommended view */}
+      {view === "recommended" && (
+        <div className="flex gap-2 mb-4">
+          <button onClick={() => setRecSubTab("all")} className={subTabClass("all")}>
+            All
+          </button>
+          <button onClick={() => setRecSubTab("home")} className={subTabClass("home")}>
+            Home
+          </button>
+          <button onClick={() => setRecSubTab("away")} className={subTabClass("away")}>
+            Away
+          </button>
+        </div>
+      )}
+
       {/* Sport filter (for all/timeline views) */}
       {view !== "recommended" && (
         <div className="mb-4">
@@ -164,13 +196,17 @@ export default function DashboardPage() {
         </div>
       ) : view === "recommended" ? (
         <EventList
-          events={recommendations?.recommended ?? []}
+          events={filteredRecommended}
           addedEventIds={addedEventIds}
           eventConflicts={eventConflicts}
           onAdd={handleAdd}
           onRemove={handleRemove}
           showReasons
-          emptyMessage="No recommendations yet. Try syncing your calendar or updating your preferences."
+          emptyMessage={
+            recSubTab === "all"
+              ? "No recommendations yet. Try syncing your calendar or updating your preferences."
+              : `No ${recSubTab} game recommendations.`
+          }
         />
       ) : view === "all" ? (
         <EventList

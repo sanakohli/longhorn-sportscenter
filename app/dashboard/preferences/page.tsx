@@ -2,7 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Dribbble, Diamond, Goal, Trophy } from "lucide-react";
+import { Trophy } from "lucide-react";
+import {
+  FaBasketballBall,
+  FaBaseballBall,
+  FaFutbol,
+} from "react-icons/fa";
 import { SPORTS, ALL_SPORTS } from "@/lib/constants";
 import type { Sport } from "@/data/normalized/schema";
 
@@ -14,11 +19,11 @@ const TIME_SLOTS = [
 ];
 
 const SPORT_ICONS: Record<string, React.ElementType> = {
-  mbb: Dribbble,
-  wbb: Dribbble,
-  bsb: Diamond,
-  wsb: Diamond,
-  wsc: Goal,
+  mbb: FaBasketballBall, // Men's Basketball
+  wbb: FaBasketballBall, // Women's Basketball
+  bsb: FaBaseballBall,   // Baseball
+  wsb: FaBaseballBall,   // Softball (closest match)
+  wsc: FaFutbol,         // Soccer
 };
 
 
