@@ -3,6 +3,8 @@
 import { signIn } from "next-auth/react";
 import { Calendar, Clock, FileText, Zap } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 export default function LandingPage() {
   return (
     <main className="min-h-screen bg-white">
